@@ -22,7 +22,7 @@ export default function Home() {
     const j = await res.json(); setBusy(false);
     if (!res.ok) return setErr(j.error || "Errore");
     // ricorda la chiave su questo dispositivo (comodità organizzatore)
-    try { const ks = JSON.parse(localStorage.getItem("murmura:keys") || "{}"); ks[j.code] = j.owner_key; localStorage.setItem("murmura:keys", JSON.stringify(ks)); } catch {}
+    try { const ks = JSON.parse(localStorage.getItem("spotcrushh:keys") || "{}"); ks[j.code] = j.owner_key; localStorage.setItem("spotcrushh:keys", JSON.stringify(ks)); } catch {}
     setCreated(j);
   };
   const join = () => { if (code.trim()) router.push("/w/" + code.trim().toUpperCase()); };
@@ -82,12 +82,6 @@ export default function Home() {
         )}
 
         {err && <p className="hint" style={{ color: "var(--pink)" }}>{err}</p>}
-      </section>
-
-      <section className="cards3">
-        <div className="feat"><div className="feat-emoji">🎭</div><h3>Anonimo davvero</h3><p>Nessun account, nessun nome. Ogni messaggio prende uno pseudonimo casuale: la gente è sincera.</p></div>
-        <div className="feat"><div className="feat-emoji">🛡️</div><h3>AI sempre sveglia</h3><p>Filtra in automatico ciò che è illegale o pericoloso. Tu non moderi a mano alle 2 di notte.</p></div>
-        <div className="feat"><div className="feat-emoji">📊</div><h3>Report solo per te</h3><p>Clima, critiche, momenti top e consigli. Le serate non mentono quando sono anonime.</p></div>
       </section>
     </main>
   );

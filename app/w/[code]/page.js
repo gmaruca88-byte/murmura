@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import { Bubble, AdRail, FeedSponsors, DOTS } from "../../ui";
 
 function getAlias() {
-  try { const a = JSON.parse(localStorage.getItem("murmura:alias") || "null"); if (a) return a; } catch {}
+  try { const a = JSON.parse(localStorage.getItem("spotcrushh:alias") || "null"); if (a) return a; } catch {}
   const alias = { name: "Anon·" + Math.random().toString(36).slice(2, 5).toUpperCase(), color: DOTS[Math.floor(Math.random() * DOTS.length)] };
-  try { localStorage.setItem("murmura:alias", JSON.stringify(alias)); } catch {}
+  try { localStorage.setItem("spotcrushh:alias", JSON.stringify(alias)); } catch {}
   return alias;
 }
 
@@ -26,7 +26,7 @@ export default function WallPage() {
 
   useEffect(() => { setAlias(getAlias()); }, []);
   useEffect(() => {
-    try { const arr = JSON.parse(localStorage.getItem("murmura:liked:" + code) || "[]"); setLiked(new Set(arr)); } catch {}
+    try { const arr = JSON.parse(localStorage.getItem("spotcrushh:liked:" + code) || "[]"); setLiked(new Set(arr)); } catch {}
   }, [code]);
 
   const flash = (m) => { setToast(m); setTimeout(() => setToast(null), 2800); };
@@ -72,7 +72,7 @@ export default function WallPage() {
   const like = async (id) => {
     if (liked.has(id)) return;
     const next = new Set(liked); next.add(id); setLiked(next);
-    try { localStorage.setItem("murmura:liked:" + code, JSON.stringify([...next])); } catch {}
+    try { localStorage.setItem("spotcrushh:liked:" + code, JSON.stringify([...next])); } catch {}
     setMsgs(ms => ms.map(m => m.id === id ? { ...m, likes: (m.likes || 0) + 1 } : m));
     await fetch(`/api/walls/${code}/like`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) });
   };

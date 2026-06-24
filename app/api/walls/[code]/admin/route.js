@@ -11,7 +11,8 @@ export async function GET(request, { params }) {
 
   const { data: msgs } = await db.from("messages").select("*").eq("wall_code", code).order("created_at", { ascending: true });
   const { data: an } = await db.from("analysis").select("data,generated_at").eq("wall_code", code).single();
+  const { data: sponsors } = await db.from("sponsors").select("*").eq("wall_code", code).order("created_at", { ascending: true });
 
   delete wall.owner_key;
-  return NextResponse.json({ wall, messages: msgs || [], analysis: an || null });
+  return NextResponse.json({ wall, messages: msgs || [], analysis: an || null, sponsors: sponsors || [] });
 }

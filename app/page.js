@@ -33,7 +33,7 @@ export default function Home() {
       <section>
         <p className="eyebrow">il muro anonimo del tuo evento</p>
         <h1 className="display">Le voci della serata,<br /><span className="glow">in tempo reale.</span></h1>
-        <p className="lede">Chi entra scrive in anonimo. Un'AI tiene pulito il muro, lo organizza per tema e dà a te — e solo a te — il polso reale dell'evento.</p>
+        <p className="lede">Chi entra scrive in anonimo. Flirta, commenta, rispondi — senza rivelare chi sei.</p>
 
         {!created && (
           <div className="cta-row">
